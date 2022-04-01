@@ -1,0 +1,36 @@
+//The Time Complexity is O (n) as we are iterating each element only once. Space Complexity is O (n) as we used SET.
+
+public class Solution {
+    public int LengthOfLongestSubstring(string s) {
+        
+        //This uses sliding window approach
+        //In the sliding window we need to have two pointer (a and b)
+        //lets use b to navigate thru the string
+        //use a to delete the characters at the start of the string to make sure the hashset is unique and update the global max
+        
+        int a_pointer= 0;
+        int b_pointer=0;
+        HashSet<char> set= new HashSet<char>();
+        int max= 0;
+        
+        
+        while (b_pointer < s.Length)
+        {
+            
+            if(!set.Contains(s[b_pointer]))
+            {
+                //this is good scenario
+                set.Add (s[b_pointer]);
+                max= Math. Max(max, set.Count ());
+                b_pointer++;
+            }
+            else
+            {
+                set.Remove (s[a_pointer]);// we will keep on removing it till the set elements are unique to add this new char
+                a_pointer++;
+            }
+        }
+        
+        return max;
+    }
+}
