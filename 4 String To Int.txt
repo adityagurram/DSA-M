@@ -1,0 +1,55 @@
+public class Solution {
+    public int MyAtoi(string s) {
+        
+        int i=0;
+        int len= s.Length;
+        while (i < len && s[i]==' ')
+        {
+            i++;
+        }
+        
+        if(i>=len)
+        {
+            return 0;
+        }
+        
+        int sign=1;
+        
+        if(s[i]=='+')
+        {
+            sign =1;
+             i++;//read next char after sign
+        }
+        else if (s[i]=='-')
+        {
+            sign= -1;
+            i++;//read next char after sign
+        }
+        
+       
+        
+        long num=0; 
+        for(int j=i ; j< len && s[j]>='0' && s[j]<='9'; j++)
+        {
+            num= num * 10 + s[j] - '0';
+            
+            
+            if(num > Int32.MaxValue)
+            {
+                if(sign==1)
+                {
+                        return sign * Int32.MaxValue;
+                }
+                else
+                {
+                    return  Int32.MinValue;
+                }
+            
+            }
+        }
+        
+        int result=(int) num * sign;
+        return result;
+        
+    }
+}

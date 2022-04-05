@@ -1,0 +1,55 @@
+//Time Complexity is O (nLog N ) for sorting and Space Complexity is O (1)
+public class Solution {
+    public IList<IList<int>> ThreeSum(int[] nums) {
+        
+
+        
+        List<IList<int>> result= new List<IList<int>> ();
+        Array.Sort (nums);
+        //Since the arr is sorted , we can use two pointer approach to find the sum
+        
+        for(int k=0; k< nums.Length -1 ; k++)
+        {
+            
+            if( k>0 && nums [k]== nums [k-1]) continue;
+            
+            
+            int low= k+1;
+            int high= nums.Length -1; 
+            int target= -nums [k];
+            
+            while (low< high)
+            {
+                if(nums [low] + nums [high] == target)
+                {
+                  List<int > temp = new List<int> ();
+                  temp. Add (nums [low] );
+                  temp. Add (nums [k]);
+                  temp. Add (nums [high]);
+                  result. Add (temp);
+                    
+                //here is the tricky part, we need to remove duplicate processing
+                    while (low< high && nums [low]== nums [low+1] ) low++;
+                    while (low < high && nums [high]== nums [high -1]) high --;
+                   
+                    low++;
+                    high --;
+                }
+                
+                else if (nums [low] + nums [high] > target)
+                {
+                    high --;
+                }
+                else
+                {
+                    low++;
+                }
+            }
+        }
+                return result;
+    }
+        
+
+                
+}
+                   
