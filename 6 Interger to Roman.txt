@@ -1,0 +1,44 @@
+public class Solution {
+    public string IntToRoman(int num) {
+         
+        if (num <=0) return "";
+        
+        StringBuilder sb= new StringBuilder ();
+        
+        Dictionary<int, String> dict= new Dictionary<int, String> ();
+        dict. Add (1000, "M");
+        dict.Add (900, "CM");
+        dict. Add (500, "D");
+        dict.Add (400, "CD");
+        dict. Add (100, "C");
+        dict. Add (90, "XC");
+        dict. Add (50, "L");
+        dict. Add (40, "XL");
+        dict. Add (10, "X");
+        dict. Add (9, "IX");
+        dict. Add (5, "V");
+        dict. Add (4, "IV");
+        dict. Add (1, "I");
+         
+        
+        foreach (int key in dict.Keys)
+        {
+            int numberOfSymbols= num/key;
+            
+            for(int i=0; i< numberOfSymbols ; i++)
+            {
+                sb.Append (dict[key]);
+            }
+            num= num % key;
+        }
+    
+        
+        
+       
+       
+        
+        
+        return sb.ToString();
+        
+    }
+}
